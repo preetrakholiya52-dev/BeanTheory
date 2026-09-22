@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bean-bg: #090909;
+  --color-bean-deep: #1B100B;
+  --color-bean-brown: #5A321F;
+  --color-bean-cream: #F3E7D0;
+  --color-bean-white: #FFF8EC;
+  --color-bean-accent: #D95F02;
+
+  --font-display: 'Oswald', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  :root {
+    background-color: var(--color-bean-bg);
+    color: var(--color-bean-white);
+    font-family: var(--font-sans);
+  }
+
+  body {
+    background-color: var(--color-bean-bg);
+    color: var(--color-bean-white);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  h1 {
+    @apply text-6xl md:text-8xl lg:text-9xl tracking-tight;
+  }
+
+  h2 {
+    @apply text-4xl md:text-6xl lg:text-7xl tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-4xl lg:text-5xl tracking-tight;
+  }
+}
+
+@layer components {
+  /* Premium Buttons */
+  .btn-primary {
+    @apply bg-bean-accent text-bean-bg px-10 py-4 font-sans font-medium tracking-widest uppercase transition-all duration-500 ease-out inline-flex items-center justify-center;
+  }
+  
+  .btn-primary:hover {
+    @apply scale-105;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-bean-white border border-bean-white/30 px-10 py-4 font-sans font-medium tracking-widest uppercase transition-all duration-500 ease-out inline-flex items-center justify-center;
+  }
+
+  .btn-secondary:hover {
+    @apply border-bean-white bg-bean-white/10 scale-105;
+  }
+}
+
+/* Lenis Smooth Scroll Recommended Base Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
