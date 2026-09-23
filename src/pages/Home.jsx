@@ -12,7 +12,7 @@ import Footer from '../components/Footer/Footer';
 
 export default function Home({ introFinished }) {
   return (
-    <main className="relative w-full z-10 flex flex-col items-center">
+    <main className="relative w-full z-10 flex flex-col">
       <Hero introFinished={introFinished} />
       <BrandStatement />
       <OriginJourney />

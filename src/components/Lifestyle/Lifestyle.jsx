@@ -56,41 +56,44 @@ export default function Lifestyle() {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      // 1. Horizontal Scroll Timeline
+      const getScrollDist = () => {
+        if (!scrollContainerRef.current) return window.innerWidth * 3;
+        return scrollContainerRef.current.scrollWidth - window.innerWidth;
+      };
+
+      // 1. Horizontal Scroll Timeline with pinning
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: '+=400%', // Pin for 4 viewports
+          end: () => `+=${getScrollDist()}`,
           pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
           scrub: 1,
+          invalidateOnRefresh: true,
         }
       });
 
       // Move the horizontal container entirely to the left
       tl.to(scrollContainerRef.current, {
-        x: () => -(scrollContainerRef.current.scrollWidth - window.innerWidth),
+        x: () => -getScrollDist(),
         ease: 'none',
-      });
+        duration: 1,
+      }, 0);
 
-      // 2. Inner Parallax and Image Scaling
-      imagesRef.current.forEach((img, i) => {
+      // 2. Inner Parallax and Image Scaling integrated directly into the pinned timeline
+      imagesRef.current.forEach((img) => {
         if (!img) return;
-        
-        // Simple inner parallax: moving the <img> inside its overflow-hidden container
-        gsap.fromTo(img, 
+        tl.fromTo(img, 
           { scale: 1.3, xPercent: -15 },
           {
             scale: 1,
             xPercent: 15,
             ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top top',
-              end: '+=400%',
-              scrub: true
-            }
-          }
+            duration: 1,
+          },
+          0
         );
       });
     }, sectionRef);
@@ -102,7 +105,7 @@ export default function Lifestyle() {
     <section 
       id="lifestyle" 
       ref={sectionRef} 
-      className="relative w-full h-[100svh] bg-bean-deep overflow-hidden pointer-events-auto"
+      className="relative z-10 w-full h-[100svh] bg-bean-deep overflow-hidden pointer-events-auto"
     >
       {/* Fixed Sticky Header overlapping the images with mix-blend-mode */}
       <div className="absolute top-12 left-6 md:top-20 md:left-16 z-20 mix-blend-difference text-bean-white pointer-events-none">

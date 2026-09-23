@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { SplitText, SplitLines } from '../../utils/textSplitter';
 
@@ -17,6 +18,7 @@ export default function CinematicIntro({ onComplete }) {
   useEffect(() => {
     if (!shouldRender || prefersReducedMotion) {
       if (onComplete) onComplete();
+      ScrollTrigger.refresh();
       return;
     }
 
@@ -29,6 +31,7 @@ export default function CinematicIntro({ onComplete }) {
         
         // Unlock scrolling
         document.body.style.overflow = '';
+        ScrollTrigger.refresh();
         if (onComplete) onComplete();
         
         // Smoothly fade out the entire intro container

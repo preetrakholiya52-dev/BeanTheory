@@ -126,7 +126,7 @@ export default function EnergySelector() {
     <section 
       ref={sectionRef} 
       id="energy-selector"
-      className="w-full min-h-[100svh] flex flex-col md:flex-row items-center justify-between px-6 md:px-24 py-24 pointer-events-auto"
+      className="relative z-10 w-full min-h-[100svh] bg-[#090909] flex flex-col md:flex-row items-center justify-between px-6 md:px-24 py-24 pointer-events-auto"
     >
       
       {/* Selector Panel (Left) */}
