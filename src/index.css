@@ -31,7 +31,12 @@
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     text-transform: uppercase;
     line-height: 1.1;
@@ -52,11 +57,12 @@
 }
 
 @layer components {
+
   /* Premium Buttons */
   .btn-primary {
     @apply bg-bean-accent text-bean-bg px-10 py-4 font-sans font-medium tracking-widest uppercase transition-all duration-500 ease-out inline-flex items-center justify-center;
   }
-  
+
   .btn-primary:hover {
     @apply scale-105;
   }
@@ -71,18 +77,23 @@
 }
 
 /* Lenis Smooth Scroll Recommended Base Styles */
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
+
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
+
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
+
 .lenis.lenis-stopped {
   overflow: hidden;
 }
+
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }

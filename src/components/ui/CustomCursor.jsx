@@ -4,7 +4,7 @@ import gsap from 'gsap';
 export default function CustomCursor() {
   const cursorRef = useRef(null);
   const textRef = useRef(null);
-  
+
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [cursorText, setCursorText] = useState("");
 
@@ -16,7 +16,7 @@ export default function CustomCursor() {
     }
 
     const cursor = cursorRef.current;
-    
+
     // QuickSetters for high performance mapping (no layout thrashing)
     const setX = gsap.quickSetter(cursor, 'x', 'px');
     const setY = gsap.quickSetter(cursor, 'y', 'px');
@@ -38,7 +38,7 @@ export default function CustomCursor() {
     // Global listener to check if we are hovering over an element that wants a custom cursor state
     const handleMouseOver = (e) => {
       const target = e.target.closest('[data-cursor]');
-      
+
       if (target) {
         const text = target.getAttribute('data-cursor');
         if (text) {
@@ -92,7 +92,7 @@ export default function CustomCursor() {
   if (isTouchDevice) return null;
 
   return (
-    <div 
+    <div
       ref={cursorRef}
       className="fixed top-0 left-0 w-5 h-5 bg-bean-cream rounded-full pointer-events-none z-[9999] mix-blend-difference flex items-center justify-center overflow-hidden"
       style={{ willChange: 'transform' }}
